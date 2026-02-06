@@ -1,0 +1,33 @@
+{
+	"schemaVersion": 1,
+	"id": "tonhoclient",
+	"version": "${version}",
+	"name": "tonhoClient",
+	"description": "O cliente privado cabuloso do tombo",
+	"authors": [
+		"Tonho, o dono da programação"
+	],
+	"contact": {
+		"homepage": "https://fabricmc.net/",
+		"sources": "https://github.com/FabricMC/fabric-example-mod"
+	},
+	"license": "CC0-1.0",
+	"icon": "assets/tonhoclient/icon.png",
+	"environment": "*",
+	"entrypoints": {
+		"main": [
+		],
+		"client": [
+			"me.antonio.tonhoclient.TonhoClient"
+		]
+	},
+	"mixins": [
+		"tonhoclient.mixins.json"
+	],
+	"depends": {
+		"fabricloader": ">=0.14.21",
+		"minecraft": ">=1.21.4",
+		"java": ">=21",
+		"fabric-api": "*"
+	}
+}
