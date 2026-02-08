@@ -1,11 +1,10 @@
 {
 	"schemaVersion": 1,
-	"id": "tonhoclient",
+	"id": "sodium-compatibility-layer",
 	"version": "${version}",
-	"name": "tonhoClient",
-	"description": "O cliente privado cabuloso do tombo",
+	"name": "Sodium Compatibility Layer",
+	"description": "Ensures compatibility between Sodium and legacy renderers.",
 	"authors": [
-		"Tonho, o dono da programação"
 	],
 	"contact": {
 		"homepage": "https://fabricmc.net/",
@@ -25,8 +24,8 @@
 		"tonhoclient.mixins.json"
 	],
 	"depends": {
-		"fabricloader": ">=0.14.21",
-		"minecraft": ">=1.21.4",
+		"fabricloader": ">=0.16.0",
+		"minecraft": ">=1.21.10",
 		"java": ">=21",
 		"fabric-api": "*"
 	}
