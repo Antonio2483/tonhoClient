@@ -10,7 +10,8 @@
 		"FullbrightMixin",
 		"NoFogMixin",
 		"SeeInvisMixin",
-		"TrueSightMixin"
+		"TrueSightMixin",
+		"DarknessNoFogMixin"
 	],
 	"injectors": {
 		"defaultRequire": 1
