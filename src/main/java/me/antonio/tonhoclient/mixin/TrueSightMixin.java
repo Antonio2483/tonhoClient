@@ -6,32 +6,31 @@ import net.minecraft.client.render.entity.LivingEntityRenderer;
 import net.minecraft.client.render.entity.state.LivingEntityRenderState;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
-import org.spongepowered.asm.mixin.injection.Inject;
-import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
+import org.spongepowered.asm.mixin.injection.ModifyVariable;
 
 @Mixin(LivingEntityRenderer.class)
 public class TrueSightMixin {
 
     /**
-     * O método getMixColor é perfeito porque ele retorna um 'int' (cor ARGB)
-     * e recebe o 'state', permitindo checar se a entidade é invisível.
+     * Alvo: Método render
+     * At: STORE (Logo após o Minecraft salvar o valor da cor na variável local)
+     * ordinal: 1 (Geralmente a variável 'j' ou 'k' que guarda a cor final)
      */
-    @Inject(method = "getMixColor", at = @At("HEAD"), cancellable = true)
-    private void onGetMixColor(LivingEntityRenderState state, CallbackInfoReturnable<Integer> cir) {
+    @ModifyVariable(method = "render", at = @At(value = "STORE"), ordinal = 1)
+    private int modifyInvisColor(int originalColor, LivingEntityRenderState state) {
         SeeInvis mod = ModuleManager.get(SeeInvis.class);
 
-        // Se o mod estiver ligado e a entidade for invisível
+        // Só aplicamos se o mod estiver ON e a entidade for invisível
         if (mod != null && mod.isEnabled() && state.invisible) {
 
-            // Convertemos seu slider (0.0 a 1.0) para 0-255
+            // Lógica do seu slider (0.0 a 1.0)
             int alpha = (int) (SeeInvis.OPACITY * 255);
-            alpha = Math.max(10, Math.min(255, alpha));
+            alpha = Math.max(5, Math.min(255, alpha));
 
-            // Montamos a cor: Alpha customizado + Branco (FFFFFF)
-            // Isso vai sobrescrever a cor padrão do jogo por uma com o seu Alpha
-            int customColor = (alpha << 24) | 0xFFFFFF;
-
-            cir.setReturnValue(customColor);
+            // Retorna a cor com seu Alpha + Branco
+            return (alpha << 24) | 0xFFFFFF;
         }
+
+        return originalColor;
     }
 }
