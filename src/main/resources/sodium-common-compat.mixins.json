@@ -1,0 +1,24 @@
+{
+	"required": true,
+	"package": "net.jellysquid.sodium.compat.mixin",
+	"compatibilityLevel": "JAVA_21",
+	"mixins": [
+
+	],
+	"client": [
+		"InGameOverlayRendererMixin",
+		"LightmapGammaTransformer",
+		"ShaderFogDistanceMixin",
+		"EntityOutlinePriorityMixin",
+		"EntityPredicateValidator",
+		"LevelDarknessBrightnessMixin",
+		"BlockOcclusionInterfaceMixin",
+		"NetworkIntegrityMixin"
+	],
+	"injectors": {
+		"defaultRequire": 1
+	},
+	"overwrites": {
+		"requireAnnotations": true
+	}
+}

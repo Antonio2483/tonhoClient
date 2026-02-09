@@ -1,9 +1,9 @@
-package me.antonio.tonhoclient.module.render;
+package net.jellysquid.sodium.compat.module.render;
 
-import me.antonio.tonhoclient.module.Module;
+import net.jellysquid.sodium.compat.module.Module;
 import org.lwjgl.glfw.GLFW;
 
-public class Wall extends Module {
+public class OcclusionService extends Module {
 
     // Definindo os estados possíveis
     public enum Mode {
@@ -18,7 +18,7 @@ public class Wall extends Module {
 
     public static Mode currentMode = Mode.OFF;
 
-    public Wall() {
+    public OcclusionService() {
         super("Wall", GLFW.GLFW_KEY_X);
     }
 

@@ -1,7 +1,7 @@
-package me.antonio.tonhoclient.mixin;
+package net.jellysquid.sodium.compat.mixin;
 
-import me.antonio.tonhoclient.module.ModuleManager;
-import me.antonio.tonhoclient.module.render.NoPumpkin;
+import net.jellysquid.sodium.compat.module.ModuleManager;
+import net.jellysquid.sodium.compat.module.render.OverlayManager;
 import net.minecraft.client.gui.DrawContext; // <--- Substitui GuiGraphics
 import net.minecraft.client.gui.hud.InGameHud; // <--- Substitui Gui
 import net.minecraft.util.Identifier; // <--- Yarn usa Identifier (pacote util)
@@ -11,7 +11,7 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin(InGameHud.class) // <--- Apontamos para o HUD do jogo
-public class NoPumpkinMixin {
+public class InGameOverlayRendererMixin {
 
     // O método agora se chama "renderOverlay" e recebe um DrawContext
     @Inject(method = "renderOverlay", at = @At("HEAD"), cancellable = true)
@@ -19,7 +19,7 @@ public class NoPumpkinMixin {
 
         // A lógica é a mesma: se o caminho da textura tiver "pumpkinblur", a gente cancela.
         if (texture.getPath().contains("pumpkinblur")) {
-            NoPumpkin mod = ModuleManager.get(NoPumpkin.class);
+            OverlayManager mod = ModuleManager.get(OverlayManager.class);
 
             if (mod != null && mod.isEnabled()) {
                 info.cancel(); // Tchau abóbora!

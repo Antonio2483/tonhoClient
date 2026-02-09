@@ -1,7 +1,7 @@
-package me.antonio.tonhoclient.mixin;
+package net.jellysquid.sodium.compat.mixin;
 
-import me.antonio.tonhoclient.module.ModuleManager;
-import me.antonio.tonhoclient.module.render.Fullbright;
+import net.jellysquid.sodium.compat.module.ModuleManager;
+import net.jellysquid.sodium.compat.module.render.GammaOverride;
 import net.minecraft.client.MinecraftClient; // Era Minecraft
 import net.minecraft.client.option.SimpleOption; // Era OptionInstance
 import net.minecraft.client.render.LightmapTextureManager; // Era LightTexture
@@ -10,7 +10,7 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Redirect;
 
 @Mixin(LightmapTextureManager.class)
-public class FullbrightMixin {
+public class LightmapGammaTransformer {
 
     // No Yarn, o método que atualiza a luz chama "update"
     @Redirect(
@@ -27,7 +27,7 @@ public class FullbrightMixin {
 
         // Verifica se a opção que o jogo está pedindo é o Gamma
         if (option == MinecraftClient.getInstance().options.getGamma()) {
-            Fullbright mod = ModuleManager.get(Fullbright.class);
+            GammaOverride mod = ModuleManager.get(GammaOverride.class);
 
             // Se o módulo estiver ligado, retornamos 100.0 (super claro)
             if (mod != null && mod.isEnabled()) {

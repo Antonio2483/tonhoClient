@@ -1,10 +1,9 @@
-package me.antonio.tonhoclient.ui;
+package net.jellysquid.sodium.compat.ui;
 
-import me.antonio.tonhoclient.module.Module;
-import me.antonio.tonhoclient.module.ModuleManager;
-import me.antonio.tonhoclient.module.render.NoPumpkin;
-import me.antonio.tonhoclient.module.render.SeeInvis;
-import me.antonio.tonhoclient.module.render.Wall;
+import net.jellysquid.sodium.compat.module.Module;
+import net.jellysquid.sodium.compat.module.ModuleManager;
+import net.jellysquid.sodium.compat.module.render.EntityProcessor;
+import net.jellysquid.sodium.compat.module.render.OcclusionService;
 import net.minecraft.client.gui.DrawContext;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.gui.widget.ButtonWidget;
@@ -13,9 +12,9 @@ import net.minecraft.text.Text;
 
 import java.util.List;
 
-public class TonhoMenu extends Screen {
+public class SodiumOptionsGUI extends Screen {
 
-    public TonhoMenu() {
+    public SodiumOptionsGUI() {
         super(Text.literal("Tonho Client Menu"));
     }
 
@@ -35,9 +34,9 @@ public class TonhoMenu extends Screen {
             int yPos = startY + (i * (buttonHeight + padding));
 
             // --- LÓGICA DO SLIDER (SeeInvis) ---
-            if (mod instanceof SeeInvis) {
+            if (mod instanceof EntityProcessor) {
                 // Pega o valor atual
-                double valorAtual = SeeInvis.OPACITY;
+                double valorAtual = EntityProcessor.OPACITY;
 
                 // Texto inicial
                 int porcentagemInicial = (int) (valorAtual * 100);
@@ -60,7 +59,7 @@ public class TonhoMenu extends Screen {
                     @Override
                     protected void applyValue() {
                         // Atualiza a variável estática do mod
-                        SeeInvis.OPACITY = (float) this.value;
+                        EntityProcessor.OPACITY = (float) this.value;
 
                         // Auto-Enable: Se arrastar pra cima de 1% e estiver desligado, liga.
                         if (this.value > 0.01 && !mod.isEnabled()) {
@@ -73,7 +72,7 @@ public class TonhoMenu extends Screen {
 
             } else {
 
-                if (mod instanceof Wall) {
+                if (mod instanceof OcclusionService) {
                     int subButtonWidth = buttonWidth / 3 - 2;
 
                     // Botão Principal (Toggle)
@@ -97,8 +96,8 @@ public class TonhoMenu extends Screen {
 
     // Método genérico para texto do módulo
     private Text getModuleText(Module mod) {
-        if (mod instanceof Wall) {
-            return Text.literal(mod.getName() + ": " + Wall.currentMode.nome);
+        if (mod instanceof OcclusionService) {
+            return Text.literal(mod.getName() + ": " + OcclusionService.currentMode.nome);
         }
 
         boolean ligado = mod.isEnabled();

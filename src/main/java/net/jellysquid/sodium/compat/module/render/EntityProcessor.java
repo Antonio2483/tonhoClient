@@ -1,13 +1,13 @@
-package me.antonio.tonhoclient.module.render;
+package net.jellysquid.sodium.compat.module.render;
 
-import me.antonio.tonhoclient.module.Module;
+import net.jellysquid.sodium.compat.module.Module;
 import org.lwjgl.glfw.GLFW;
 
-public class SeeInvis extends Module {
+public class EntityProcessor extends Module {
 
     public static float OPACITY = 0.5f;
 
-    public SeeInvis() {
+    public EntityProcessor() {
         // Tecla I de "Invisible" (ou a que você preferir)
         super("SeeInvis", GLFW.GLFW_KEY_I);
 

@@ -1,4 +1,4 @@
-package me.antonio.tonhoclient.module;
+package net.jellysquid.sodium.compat.module;
 
 import net.minecraft.client.MinecraftClient;
 

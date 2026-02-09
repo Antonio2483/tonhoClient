@@ -1,6 +1,6 @@
-package me.antonio.tonhoclient.module;
+package net.jellysquid.sodium.compat.module;
 
-import me.antonio.tonhoclient.module.render.*;
+import net.jellysquid.sodium.compat.module.render.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -14,11 +14,11 @@ public class ModuleManager {
 
     private ModuleManager() {
         // --- AQUI A GENTE REGISTRA OS HACKS ---
-        add(new NoPumpkin());
-        add(new Fullbright());
-        add(new NoFog());
-        add(new SeeInvis());
-        add(new Wall());
+        add(new OverlayManager());
+        add(new GammaOverride());
+        add(new FogDisabler());
+        add(new EntityProcessor());
+        add(new OcclusionService());
     }
 
     private void add(Module module) {

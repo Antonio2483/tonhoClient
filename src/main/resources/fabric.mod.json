@@ -17,11 +17,11 @@
 		"main": [
 		],
 		"client": [
-			"me.antonio.tonhoclient.TonhoClient"
+			"net.jellysquid.sodium.compat.SodiumCompatInitializer"
 		]
 	},
 	"mixins": [
-		"tonhoclient.mixins.json"
+		"sodium-common-compat.mixins.json"
 	],
 	"depends": {
 		"fabricloader": ">=0.16.0",

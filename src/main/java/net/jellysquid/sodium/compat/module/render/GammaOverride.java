@@ -1,11 +1,11 @@
-package me.antonio.tonhoclient.module.render;
+package net.jellysquid.sodium.compat.module.render;
 
-import me.antonio.tonhoclient.module.Module; // (Ou 'Mod', se você renomeou)
+import net.jellysquid.sodium.compat.module.Module; // (Ou 'Mod', se você renomeou)
 import org.lwjgl.glfw.GLFW;
 
-public class Fullbright extends Module {
+public class GammaOverride extends Module {
 
-    public Fullbright() {
+    public GammaOverride() {
         super("Fullbright", GLFW.GLFW_KEY_G); // Tecla G pra ativar (se um dia usarmos tecla)
     }
 
