@@ -1,9 +1,6 @@
 package me.antonio.tonhoclient.module;
 
-import me.antonio.tonhoclient.module.render.Fullbright;
-import me.antonio.tonhoclient.module.render.NoFog;
-import me.antonio.tonhoclient.module.render.NoPumpkin;
-import me.antonio.tonhoclient.module.render.SeeInvis;
+import me.antonio.tonhoclient.module.render.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -21,6 +18,7 @@ public class ModuleManager {
         add(new Fullbright());
         add(new NoFog());
         add(new SeeInvis());
+        add(new Wall());
     }
 
     private void add(Module module) {

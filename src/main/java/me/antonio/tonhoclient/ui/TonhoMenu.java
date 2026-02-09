@@ -4,6 +4,7 @@ import me.antonio.tonhoclient.module.Module;
 import me.antonio.tonhoclient.module.ModuleManager;
 import me.antonio.tonhoclient.module.render.NoPumpkin;
 import me.antonio.tonhoclient.module.render.SeeInvis;
+import me.antonio.tonhoclient.module.render.Wall;
 import net.minecraft.client.gui.DrawContext;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.gui.widget.ButtonWidget;
@@ -71,6 +72,17 @@ public class TonhoMenu extends Screen {
                 this.addDrawableChild(slider); // Yarn usa addDrawableChild
 
             } else {
+
+                if (mod instanceof Wall) {
+                    int subButtonWidth = buttonWidth / 3 - 2;
+
+                    // Botão Principal (Toggle)
+                    this.addDrawableChild(ButtonWidget.builder(getModuleText(mod), (button) -> {
+                        mod.toggle();
+                        button.setMessage(getModuleText(mod));
+                    }).dimensions(this.width / 2 - buttonWidth / 2, yPos, buttonWidth, buttonHeight).build());
+                }
+                else{
                 // --- LÓGICA DO BOTÃO PADRÃO ---
                 this.addDrawableChild(ButtonWidget.builder(getModuleText(mod), (button) -> {
                             mod.toggle();
@@ -78,12 +90,17 @@ public class TonhoMenu extends Screen {
                         })
                         .dimensions(this.width / 2 - buttonWidth / 2, yPos, buttonWidth, buttonHeight) // .bounds virou .dimensions
                         .build());
+                    }
             }
         }
     }
 
     // Método genérico para texto do módulo
     private Text getModuleText(Module mod) {
+        if (mod instanceof Wall) {
+            return Text.literal(mod.getName() + ": " + Wall.currentMode.nome);
+        }
+
         boolean ligado = mod.isEnabled();
         String cor = ligado ? "§a" : "§c";
         String estado = ligado ? "LIGADO" : "DESLIGADO";

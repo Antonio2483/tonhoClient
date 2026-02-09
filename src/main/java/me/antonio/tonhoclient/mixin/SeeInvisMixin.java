@@ -18,8 +18,6 @@ public class SeeInvisMixin {
 
         SeeInvis mod = ModuleManager.get(SeeInvis.class);
 
-        // Se o mod estiver ligado, a gente mente pro jogo:
-        // "Não, essa entidade NÃO está invisível pra esse player."
         if (mod != null && mod.isEnabled()) {
             info.setReturnValue(false);
         }
