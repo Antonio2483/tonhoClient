@@ -12,30 +12,26 @@ import org.spongepowered.asm.mixin.injection.Redirect;
 @Mixin(LightmapTextureManager.class)
 public class LightmapGammaTransformer {
 
-    // No Yarn, o método que atualiza a luz chama "update"
     @Redirect(
             method = "update",
             at = @At(
                     value = "INVOKE",
-                    // O alvo mudou de OptionInstance;get para SimpleOption;getValue
                     target = "Lnet/minecraft/client/option/SimpleOption;getValue()Ljava/lang/Object;"
             )
     )
-    private Object getGamma(SimpleOption<Double> option) {
-        // Pega o valor original (Double)
-        Double originalValue = option.getValue();
+    private Object getGamma(SimpleOption<?> option) {
+        // Primeiro, pegamos o valor como Object para não causar ClassCastException imediato
+        Object value = option.getValue();
 
-        // Verifica se a opção que o jogo está pedindo é o Gamma
+        // Verificamos se esta opção é realmente o Gamma
         if (option == MinecraftClient.getInstance().options.getGamma()) {
             GammaOverride mod = ModuleManager.get(GammaOverride.class);
 
-            // Se o módulo estiver ligado, retornamos 100.0 (super claro)
             if (mod != null && mod.isEnabled()) {
-                return 100.0;
+                return 16.0D; // Retorna Double se ligado
             }
         }
 
-        // Vida normal se não for gamma ou mod desligado
-        return originalValue;
+        return value; // Retorna o valor original (seja ele o que for) sem tentar forçar cast
     }
 }
