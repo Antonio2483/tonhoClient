@@ -19,7 +19,6 @@ public class SodiumCompatInitializer implements ClientModInitializer {
 		ModuleManager instance = ModuleManager.INSTANCE;
 
 		// Log camuflado: Se alguém vir seu log, parece apenas o Sodium carregando
-		System.out.println("[Sodium-Compat] Initializing render pipeline optimization...");
 
 		// 2. CRIAÇÃO DA TECLA (Corrigido para 1.21.1)
 		menuKey = KeyBindingHelper.registerKeyBinding(new KeyBinding(

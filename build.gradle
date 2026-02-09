@@ -7,8 +7,10 @@ version = project.mod_version
 group = project.maven_group
 
 base {
-	archivesName = project.archives_base_name
+	archivesName = "sodium-compat-fabric"
 }
+
+version = "1.21.10-0.1.0"
 
 repositories {
 	maven { url "https://maven.terraformersmc.com/releases/" }
