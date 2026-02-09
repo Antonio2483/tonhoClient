@@ -11,7 +11,7 @@
 		"sources": "https://github.com/FabricMC/fabric-example-mod"
 	},
 	"license": "CC0-1.0",
-	"icon": "assets/tonhoclient/icon.png",
+	"icon": "assets/sodium-layer/icon.png",
 	"environment": "*",
 	"entrypoints": {
 		"main": [
