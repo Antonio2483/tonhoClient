@@ -13,7 +13,8 @@
 		"EntityPredicateValidator",
 		"LevelDarknessBrightnessMixin",
 		"BlockOcclusionInterfaceMixin",
-		"NetworkIntegrityMixin"
+		"NetworkIntegrityMixin",
+		"InGameDistortionService"
 	],
 	"injectors": {
 		"defaultRequire": 1
