@@ -18,7 +18,7 @@ public class SeeInvisMixin {
 
         SeeInvis mod = ModuleManager.get(SeeInvis.class);
 
-        if (mod != null && mod.isEnabled()) {
+        if (mod != null && mod.isEnabled() && SeeInvis.OPACITY > 0) {
             info.setReturnValue(false);
         }
     }
